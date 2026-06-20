@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://aihub.vercel.app"; // ← update to your real domain once live
+const SITE_URL = "https://aiusagetools.com"; // ← update to your real domain once live
 
 export const metadata: Metadata = {
   // ── Core ──────────────────────────────────────────────────────────────────

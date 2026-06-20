@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-bold text-gray-900 mb-2">1. Introduction</h2>
-              <p>Welcome to AIHub ("we," "us," or "our"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you use our website at aihub.vercel.app and any associated services (collectively, the "Service").</p>
+              <p>Welcome to AIHub ("we," "us," or "our"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you use our website at aiusagetools.com and any associated services (collectively, the "Service").</p>
             </section>
 
             <section>

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { industries } from "@/lib/tools";
 
-const SITE_URL = "https://aihub.vercel.app"; // ← update to your real domain
+const SITE_URL = "https://aiusagetools.com"; // ← update to your real domain
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

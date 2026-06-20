@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { industries } from "@/lib/tools";
 import { industrySEO } from "@/lib/seo";
 
-const SITE_URL = "https://aihub.vercel.app";
+const SITE_URL = "https://aiusagetools.com";
 
 interface Props {
   params: Promise<{ slug: string }>;
