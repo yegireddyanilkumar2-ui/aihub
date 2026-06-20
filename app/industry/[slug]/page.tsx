@@ -204,9 +204,11 @@ function ToolWorkspace({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Generation failed");
-      setOutput(data.result);
+      const text = await res.text();
+      let data: { error?: string; result?: string };
+      try { data = JSON.parse(text); } catch { throw new Error(`Server error (${res.status}): ${text.slice(0, 200)}`); }
+      if (!res.ok) throw new Error(data.error || `Error ${res.status}`);
+      setOutput(data.result || "");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
