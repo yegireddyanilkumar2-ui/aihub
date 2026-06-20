@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const maxDuration = 30;
+
 const HF_API_URL =
-  "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta";
+  "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3";
 
 export async function POST(req: NextRequest) {
   const { prompt } = await req.json();
@@ -25,7 +27,7 @@ export async function POST(req: NextRequest) {
     let res = await fetch(HF_API_URL, { method: "POST", headers, body });
 
     if (res.status === 503) {
-      await new Promise((r) => setTimeout(r, 10000));
+      await new Promise((r) => setTimeout(r, 3000));
       res = await fetch(HF_API_URL, { method: "POST", headers, body });
     }
 
