@@ -195,13 +195,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
 
-        {/* ── Google AdSense — uncomment and add your publisher ID once approved ──
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7407560506101366"
           crossOrigin="anonymous"
         />
-        */}
       </head>
       <body className="min-h-full flex flex-col antialiased">
         {children}

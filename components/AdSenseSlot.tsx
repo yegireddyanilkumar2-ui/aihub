@@ -11,7 +11,7 @@ interface AdSenseSlotProps {
 }
 
 // Your AdSense publisher ID — replace with yours from Google AdSense
-const PUBLISHER_ID = "ca-pub-XXXXXXXXXXXXXXXX";
+const PUBLISHER_ID = "ca-pub-7407560506101366";
 
 export default function AdSenseSlot({
   slotId,
