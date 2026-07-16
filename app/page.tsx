@@ -20,6 +20,9 @@ export default function HomePage() {
             </span>
           </div>
           <div className="flex items-center gap-4">
+            <Link href="/blog" className="hidden sm:inline text-xs font-semibold text-gray-700 hover:text-violet-700 transition-colors">
+              Blog
+            </Link>
             <span className="hidden sm:flex items-center gap-1.5 text-xs text-gray-700 font-semibold">
               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse inline-block" />
               Free &amp; Open Source
