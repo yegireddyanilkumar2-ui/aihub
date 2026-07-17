@@ -18,6 +18,10 @@ const FILTER_TABS = [
   { id: "ecommerce", label: "E-commerce" },
   { id: "content-creator", label: "Content" },
   { id: "productivity", label: "Productivity" },
+  { id: "travel", label: "Travel" },
+  { id: "fitness", label: "Fitness" },
+  { id: "event", label: "Events" },
+  { id: "construction", label: "Construction" },
 ];
 
 const BLOG_POSTS = [
@@ -54,14 +58,6 @@ export default function HomePage() {
               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse inline-block" />
               Free &amp; Open Source
             </span>
-            <a
-              href="https://huggingface.co/join"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs px-3 py-1.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
-            >
-              Get Free AI Key
-            </a>
           </div>
         </div>
       </nav>
@@ -86,7 +82,7 @@ export default function HomePage() {
             <p className="text-gray-500 text-sm">Purpose-built for real estate, education, restaurants & more — no login needed.</p>
           </div>
           <div className="flex gap-5 shrink-0">
-            {[["110+","Tools"],["11","Industries"],["$0","Forever"]].map(([v,l]) => (
+            {[["150+","Tools"],["15","Industries"],["$0","Forever"]].map(([v,l]) => (
               <div key={l} className="text-center">
                 <div className="text-xl font-extrabold gradient-text">{v}</div>
                 <div className="text-xs text-gray-500 font-medium">{l}</div>
@@ -198,8 +194,8 @@ export default function HomePage() {
         <div className="card rounded-2xl p-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { value: "110+", label: "AI Tools", icon: "🤖" },
-              { value: "11", label: "Industries", icon: "🏢" },
+              { value: "150+", label: "AI Tools", icon: "🤖" },
+              { value: "15", label: "Industries", icon: "🏢" },
               { value: "$0", label: "Cost Forever", icon: "💚" },
               { value: "100%", label: "Open Source", icon: "🔓" },
             ].map((stat) => (

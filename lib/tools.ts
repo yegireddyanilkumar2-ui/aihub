@@ -1644,4 +1644,593 @@ export const industries: Industry[] = [
       },
     ],
   },
+
+  // ─── 12. TRAVEL & TOURISM ─────────────────────────────────────────────────
+  {
+    id: "travel",
+    name: "Travel & Tourism",
+    tagline: "Plan unforgettable trips and grow your travel business with AI",
+    icon: "✈️",
+    color: "sky",
+    gradient: "from-sky-500 to-cyan-600",
+    borderColor: "border-sky-400",
+    textColor: "text-sky-700",
+    bgLight: "bg-sky-100",
+    tools: [
+      {
+        id: "itinerary-planner",
+        name: "Itinerary Planner",
+        description: "Day-by-day travel itineraries for any destination",
+        icon: "🗺️",
+        fields: [
+          { id: "destination", label: "Destination", type: "text", placeholder: "e.g. Kyoto, Japan", required: true },
+          { id: "duration", label: "Trip Duration", type: "select", options: ["Weekend (2-3 days)", "Short trip (4-5 days)", "1 week", "2 weeks", "3+ weeks"] },
+          { id: "travelStyle", label: "Travel Style", type: "select", options: ["Cultural & sightseeing", "Adventure & outdoors", "Relaxation & beach", "Food & nightlife", "Family-friendly", "Budget backpacking", "Luxury"] },
+          { id: "interests", label: "Special Interests", type: "text", placeholder: "e.g. temples, street food, hiking, art museums" },
+        ],
+        promptTemplate: (v) =>
+          `Create a detailed ${v.duration || "1 week"} travel itinerary for ${v.destination}. Travel style: ${v.travelStyle || "cultural & sightseeing"}${v.interests ? `. Interests: ${v.interests}` : ""}.\n\nFor each day include: morning/afternoon/evening activities, recommended restaurants for each meal, travel tips, and estimated time at each location. Add a "Pro Tips" section at the end with local customs, transport advice, and money-saving hacks.`,
+      },
+      {
+        id: "hotel-description",
+        name: "Hotel Description Writer",
+        description: "Compelling property descriptions that drive bookings",
+        icon: "🏨",
+        fields: [
+          { id: "hotelName", label: "Hotel / Property Name", type: "text", placeholder: "e.g. The Grand Palms Resort", required: true },
+          { id: "location", label: "Location", type: "text", placeholder: "e.g. Seminyak, Bali", required: true },
+          { id: "category", label: "Property Type", type: "select", options: ["Luxury resort", "Boutique hotel", "Budget hostel", "Villa", "Guesthouse", "Apartment rental", "Safari lodge"] },
+          { id: "highlights", label: "Key Highlights", type: "textarea", placeholder: "e.g. infinity pool, beachfront, spa, award-winning restaurant, private villas" },
+        ],
+        promptTemplate: (v) =>
+          `Write a compelling hotel description for ${v.hotelName}, a ${v.category || "hotel"} in ${v.location}${v.highlights ? `. Key highlights: ${v.highlights}` : ""}.\n\nWrite 3 paragraphs: 1) Evocative opening that sets the scene and sells the experience, 2) Rooms and amenities description with sensory details, 3) Location benefits and what guests will love. Keep it aspirational and conversion-focused.`,
+      },
+      {
+        id: "tour-package-copy",
+        name: "Tour Package Copy",
+        description: "Sell tour packages with vivid, enticing descriptions",
+        icon: "📄",
+        fields: [
+          { id: "tourName", label: "Tour Name", type: "text", placeholder: "e.g. 7-Day Highlights of Peru", required: true },
+          { id: "duration", label: "Duration", type: "text", placeholder: "e.g. 7 days / 6 nights", required: true },
+          { id: "destinations", label: "Destinations Covered", type: "textarea", placeholder: "e.g. Lima, Cusco, Machu Picchu, Sacred Valley", required: true },
+          { id: "includes", label: "What's Included", type: "textarea", placeholder: "e.g. flights, 4-star hotels, breakfast daily, guided tours, airport transfers" },
+          { id: "targetAudience", label: "Target Traveler", type: "select", options: ["Solo travelers", "Couples", "Families", "Adventure seekers", "Senior travelers", "Luxury travelers"] },
+        ],
+        promptTemplate: (v) =>
+          `Write persuasive tour package marketing copy for "${v.tourName}" — ${v.duration}. Destinations: ${v.destinations}. Includes: ${v.includes || "accommodation, transport, guided tours"}. Target: ${v.targetAudience || "all travelers"}.\n\nInclude: 1) Punchy headline and hook, 2) Day-by-day highlights summary (2 lines per day), 3) "What's Included" bullet list, 4) Emotional closing paragraph with call-to-action. Keep the tone inspiring and adventurous.`,
+      },
+      {
+        id: "travel-newsletter",
+        name: "Travel Newsletter",
+        description: "Destination inspiration emails that get clicks",
+        icon: "📧",
+        fields: [
+          { id: "destination", label: "Featured Destination", type: "text", placeholder: "e.g. Santorini, Greece", required: true },
+          { id: "season", label: "Season / Time of Year", type: "select", options: ["Spring", "Summer", "Autumn", "Winter", "Year-round"] },
+          { id: "audienceType", label: "Your Audience", type: "select", options: ["Leisure travelers", "Adventure travelers", "Luxury travelers", "Budget travelers", "Families"] },
+          { id: "ctaGoal", label: "Call-to-Action Goal", type: "select", options: ["Book a tour", "Visit website", "Download travel guide", "Follow on Instagram", "Claim a deal"] },
+        ],
+        promptTemplate: (v) =>
+          `Write a travel newsletter email featuring ${v.destination} in ${v.season || "any season"}. Audience: ${v.audienceType || "leisure travelers"}. CTA goal: ${v.ctaGoal || "book a tour"}.\n\nInclude: catchy subject line + preview text, 2-sentence destination hook, "Why go now" section, top 3 highlights, 1 local tip, and a strong CTA closing. Keep it conversational and inspiring, around 250 words.`,
+      },
+      {
+        id: "social-travel-content",
+        name: "Social Travel Content",
+        description: "Instagram and TikTok captions for travel brands",
+        icon: "📱",
+        fields: [
+          { id: "destination", label: "Destination / Photo Location", type: "text", placeholder: "e.g. Amalfi Coast, Italy", required: true },
+          { id: "platform", label: "Platform", type: "select", options: ["Instagram", "TikTok", "Facebook", "Pinterest"] },
+          { id: "postType", label: "Post Type", type: "select", options: ["Inspirational travel photo", "Travel tip", "Destination guide", "Behind the scenes", "Deal or promotion", "Travel reel hook"] },
+          { id: "tone", label: "Tone", type: "select", options: ["Dreamy & poetic", "Fun & adventurous", "Informative", "Luxury & aspirational", "Budget & practical"] },
+        ],
+        promptTemplate: (v) =>
+          `Write a ${v.platform || "Instagram"} ${v.postType || "travel post"} caption about ${v.destination}. Tone: ${v.tone || "dreamy & poetic"}.\n\nInclude: 1-2 opening hook lines, 3-4 sentences of content, 5 relevant hashtags, and an engaging CTA comment prompt. Make it feel authentic and scroll-stopping.`,
+      },
+      {
+        id: "guest-review-response",
+        name: "Guest Review Response",
+        description: "Professional replies to hotel and tour reviews",
+        icon: "⭐",
+        fields: [
+          { id: "reviewType", label: "Review Type", type: "select", options: ["5-star positive", "4-star with minor concern", "3-star mixed", "1-2 star negative complaint"] },
+          { id: "reviewContent", label: "What the Guest Said", type: "textarea", placeholder: "Paste or summarize the review...", required: true },
+          { id: "propertyName", label: "Your Business Name", type: "text", placeholder: "e.g. Sunset Villas Bali" },
+          { id: "platform", label: "Platform", type: "select", options: ["TripAdvisor", "Google", "Booking.com", "Airbnb", "Expedia"] },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional ${v.platform || "review platform"} response to a ${v.reviewType || "guest review"} for ${v.propertyName || "our property"}.\n\nGuest review: "${v.reviewContent}"\n\nResponse should: thank the guest by name (use "valued guest" if no name), acknowledge their specific feedback, address any concerns constructively without being defensive, highlight a positive, and invite them back. Keep under 120 words. Warm, professional tone.`,
+      },
+      {
+        id: "destination-guide",
+        name: "Destination Guide",
+        description: "Long-form guides for blogs and booking sites",
+        icon: "📚",
+        fields: [
+          { id: "destination", label: "Destination", type: "text", placeholder: "e.g. Chiang Mai, Thailand", required: true },
+          { id: "guideType", label: "Guide Type", type: "select", options: ["Complete first-timers guide", "Weekend city break guide", "Off-the-beaten-path guide", "Family travel guide", "Budget travel guide", "Luxury guide"] },
+          { id: "sections", label: "Sections to Include", type: "textarea", placeholder: "e.g. Getting there, where to stay, must-see attractions, food scene, day trips, practical tips" },
+        ],
+        promptTemplate: (v) =>
+          `Write a comprehensive ${v.guideType || "destination guide"} for ${v.destination}${v.sections ? `. Cover: ${v.sections}` : ""}.\n\nStructure as a well-organized blog article with H2 headings, practical details mixed with vivid descriptions. Include: best time to visit, how to get there, neighborhood breakdown, top 5 attractions, food recommendations, accommodation options by budget, day trip ideas, and essential travel tips. Aim for 600-800 words.`,
+      },
+      {
+        id: "visa-faq",
+        name: "Visa & Travel FAQ",
+        description: "Clear answers to common traveler questions",
+        icon: "🎯",
+        fields: [
+          { id: "destination", label: "Destination Country", type: "text", placeholder: "e.g. Japan, Schengen Area", required: true },
+          { id: "travelerNationality", label: "Traveler's Nationality / Region", type: "text", placeholder: "e.g. US citizens, Indian passport holders" },
+          { id: "topics", label: "FAQ Topics to Cover", type: "textarea", placeholder: "e.g. visa on arrival, health requirements, currency, safety, local transport, tipping culture" },
+        ],
+        promptTemplate: (v) =>
+          `Create a clear, accurate FAQ guide for travelers visiting ${v.destination}${v.travelerNationality ? ` (for ${v.travelerNationality})` : ""}${v.topics ? `. Topics: ${v.topics}` : ""}.\n\nFormat as 8-10 Q&A pairs. Use plain, friendly language. Include visa info, entry requirements, health/vaccinations if relevant, currency tips, safety rating, local customs, and practical transport advice. Add a "Quick Facts" box at the top with country, capital, currency, language, timezone, and plug type.`,
+      },
+      {
+        id: "seasonal-promo-copy",
+        name: "Seasonal Promo Copy",
+        description: "Holiday travel deals and seasonal campaign copy",
+        icon: "🎉",
+        fields: [
+          { id: "season", label: "Season / Holiday", type: "select", options: ["Summer holiday", "Christmas & New Year", "Spring break", "Thanksgiving", "Valentine's Day", "Eid / Diwali", "Black Friday / Cyber Monday"] },
+          { id: "offer", label: "The Deal / Offer", type: "text", placeholder: "e.g. 20% off all Bali packages, free breakfast upgrade", required: true },
+          { id: "destinations", label: "Featured Destinations", type: "text", placeholder: "e.g. Maldives, Bali, Dubai" },
+          { id: "urgency", label: "Urgency Factor", type: "select", options: ["Limited seats", "Offer ends Sunday", "Book by date", "Early bird discount", "Last few rooms"] },
+        ],
+        promptTemplate: (v) =>
+          `Write ${v.season} promotional copy for a travel offer: ${v.offer}${v.destinations ? `. Featured destinations: ${v.destinations}` : ""}. Urgency: ${v.urgency || "limited availability"}.\n\nCreate: 1) Email subject line + preview text, 2) Hero headline for landing page, 3) Short promotional paragraph (80 words), 4) 3 bullet points of key benefits, 5) CTA button text options (3 variations). Make it exciting, aspirational, and conversion-focused.`,
+      },
+    ],
+  },
+
+  // ─── 13. FITNESS & WELLNESS ───────────────────────────────────────────────
+  {
+    id: "fitness",
+    name: "Fitness & Wellness",
+    tagline: "Transform clients and grow your fitness business with AI",
+    icon: "🏋️",
+    color: "green",
+    gradient: "from-green-500 to-emerald-600",
+    borderColor: "border-green-400",
+    textColor: "text-green-700",
+    bgLight: "bg-green-100",
+    tools: [
+      {
+        id: "workout-plan",
+        name: "Workout Plan Builder",
+        description: "Personalized programs for any fitness goal",
+        icon: "💪",
+        fields: [
+          { id: "goal", label: "Fitness Goal", type: "select", options: ["Lose weight / fat loss", "Build muscle / bulk", "Improve endurance", "Tone & define", "Increase strength", "General fitness & health", "Sports performance"], required: true },
+          { id: "level", label: "Fitness Level", type: "select", options: ["Complete beginner", "Intermediate", "Advanced"] },
+          { id: "daysPerWeek", label: "Days Available Per Week", type: "select", options: ["2 days", "3 days", "4 days", "5 days", "6 days"] },
+          { id: "equipment", label: "Equipment Available", type: "select", options: ["No equipment (bodyweight only)", "Dumbbells only", "Full gym access", "Resistance bands", "Home gym (basic)", "Barbell & rack"] },
+          { id: "limitations", label: "Injuries or Limitations (optional)", type: "text", placeholder: "e.g. bad knees, lower back pain, shoulder injury" },
+        ],
+        promptTemplate: (v) =>
+          `Create a detailed ${v.daysPerWeek || "4-day"}/week workout program for: Goal: ${v.goal}, Level: ${v.level || "intermediate"}, Equipment: ${v.equipment || "full gym"}${v.limitations ? `, Limitations: ${v.limitations}` : ""}.\n\nFor each workout day include: day name, muscle focus, warm-up (5 min), main exercises (with sets, reps, rest periods), cool-down. Add weekly progression tips, a note on rest days, and a 4-week progression plan. Make it practical and motivating.`,
+      },
+      {
+        id: "nutrition-guide",
+        name: "Nutrition Guide Creator",
+        description: "Meal plans and macro breakdowns for clients",
+        icon: "🥗",
+        fields: [
+          { id: "goal", label: "Nutrition Goal", type: "select", options: ["Weight loss", "Muscle gain", "Maintain weight / recomp", "Improve energy", "Athletic performance", "General health"] },
+          { id: "calories", label: "Daily Calorie Target (approx)", type: "text", placeholder: "e.g. 1800, or leave blank to calculate" },
+          { id: "dietType", label: "Diet Preference", type: "select", options: ["No restrictions", "Vegetarian", "Vegan", "Keto / low-carb", "Paleo", "Gluten-free", "Mediterranean"] },
+          { id: "dislikes", label: "Foods to Avoid", type: "text", placeholder: "e.g. fish, dairy, nuts, spicy food" },
+          { id: "mealsPerDay", label: "Meals Per Day", type: "select", options: ["2 meals", "3 meals", "3 meals + 2 snacks", "4-5 small meals", "Intermittent fasting"] },
+        ],
+        promptTemplate: (v) =>
+          `Create a practical nutrition guide for: Goal: ${v.goal}, Calories: ${v.calories || "to be calculated based on goal"}, Diet: ${v.dietType || "no restrictions"}, Meals: ${v.mealsPerDay || "3 meals"}${v.dislikes ? `, Avoid: ${v.dislikes}` : ""}.\n\nInclude: 1) Macro breakdown (protein/carbs/fat) with reasoning, 2) 7-day sample meal plan with breakfast, lunch, dinner${v.mealsPerDay?.includes("snack") ? " and snacks" : ""}, 3) Portion guide, 4) Top 10 recommended foods, 5) Foods to minimize, 6) Pre/post workout nutrition tips. Keep meals simple and realistic.`,
+      },
+      {
+        id: "client-progress-report",
+        name: "Client Progress Report",
+        description: "Motivating progress summaries for check-ins",
+        icon: "📊",
+        fields: [
+          { id: "clientName", label: "Client Name", type: "text", placeholder: "e.g. Sarah", required: true },
+          { id: "period", label: "Reporting Period", type: "select", options: ["Weekly check-in", "2-week check-in", "Monthly review", "3-month milestone"] },
+          { id: "achievements", label: "Key Achievements This Period", type: "textarea", placeholder: "e.g. lost 2kg, PR'd on bench press, completed all workouts, improved sleep", required: true },
+          { id: "challenges", label: "Challenges / Areas to Improve", type: "textarea", placeholder: "e.g. missed 2 workouts, nutrition inconsistent on weekends" },
+          { id: "nextGoals", label: "Goals for Next Period", type: "text", placeholder: "e.g. lose 1.5kg, hit 80kg squat, improve diet consistency" },
+        ],
+        promptTemplate: (v) =>
+          `Write a motivating ${v.period || "monthly"} progress report for ${v.clientName}.\n\nAchievements: ${v.achievements}\nChallenges: ${v.challenges || "none noted"}\nNext goals: ${v.nextGoals || "continue current progress"}\n\nFormat: 1) Warm opening celebrating their effort, 2) Progress highlights (bulleted), 3) Honest but supportive feedback on challenges with specific advice, 4) Clear action plan for the next period, 5) Motivational closing. Professional but personal tone.`,
+      },
+      {
+        id: "gym-promotion-email",
+        name: "Gym Promotion Email",
+        description: "Membership drive and class promotion emails",
+        icon: "📧",
+        fields: [
+          { id: "gymName", label: "Gym / Studio Name", type: "text", placeholder: "e.g. Iron Forge Fitness", required: true },
+          { id: "promotionType", label: "Promotion Type", type: "select", options: ["New member offer", "Class launch", "Seasonal sale", "Referral program", "Re-engagement campaign", "Personal training special"] },
+          { id: "offer", label: "The Offer", type: "text", placeholder: "e.g. 50% off first month, free PT session with membership", required: true },
+          { id: "deadline", label: "Offer Deadline", type: "text", placeholder: "e.g. ends Sunday, limited to 20 spots" },
+        ],
+        promptTemplate: (v) =>
+          `Write a gym promotional email for ${v.gymName}. Promotion: ${v.promotionType || "special offer"}. Offer: ${v.offer}${v.deadline ? `. Deadline: ${v.deadline}` : ""}.\n\nInclude: subject line + preview text, motivating opening (pain point → solution), the offer clearly stated, 3 benefit bullets, social proof line, strong CTA button text, and PS line reinforcing urgency. Energetic and motivating tone. Under 200 words in the body.`,
+      },
+      {
+        id: "fitness-social-content",
+        name: "Fitness Social Content",
+        description: "Motivational posts and workout tips for Instagram",
+        icon: "📱",
+        fields: [
+          { id: "platform", label: "Platform", type: "select", options: ["Instagram", "TikTok", "Facebook", "YouTube community"] },
+          { id: "contentType", label: "Content Type", type: "select", options: ["Motivational quote post", "Workout tip", "Nutrition fact", "Transformation story", "Exercise tutorial hook", "Q&A / myth bust", "Behind the scenes"] },
+          { id: "niche", label: "Your Fitness Niche", type: "select", options: ["Weight loss", "Bodybuilding", "CrossFit / functional", "Yoga & flexibility", "Running & cardio", "Home workouts", "Women's fitness", "Senior fitness"] },
+          { id: "cta", label: "Goal of the Post", type: "select", options: ["Drive engagement (comments/shares)", "Grow followers", "Promote a service", "Educate audience", "Build trust"] },
+        ],
+        promptTemplate: (v) =>
+          `Write a ${v.platform || "Instagram"} ${v.contentType || "motivational post"} for a ${v.niche || "general fitness"} account. Goal: ${v.cta || "drive engagement"}.\n\nInclude: hook line (first 1-2 lines stop the scroll), main content (3-5 sentences or bullet tips), clear CTA, and 8-10 relevant hashtags. Write 3 variations of the caption so I can choose the best one.`,
+      },
+      {
+        id: "class-description",
+        name: "Class Description Writer",
+        description: "Exciting class descriptions for your schedule",
+        icon: "⭐",
+        fields: [
+          { id: "className", label: "Class Name", type: "text", placeholder: "e.g. Power HIIT, Sunrise Yoga, Spin & Burn", required: true },
+          { id: "duration", label: "Class Duration", type: "select", options: ["30 minutes", "45 minutes", "60 minutes", "75 minutes", "90 minutes"] },
+          { id: "level", label: "Fitness Level", type: "select", options: ["All levels welcome", "Beginner friendly", "Intermediate", "Advanced", "Over 50s"] },
+          { id: "benefits", label: "Key Benefits / What to Expect", type: "textarea", placeholder: "e.g. burn 500 calories, improve core strength, music-driven, modifications provided" },
+        ],
+        promptTemplate: (v) =>
+          `Write an exciting class description for "${v.className}" — ${v.duration || "60 min"} class, Level: ${v.level || "all levels"}${v.benefits ? `. Benefits: ${v.benefits}` : ""}.\n\nCreate two versions: 1) Short description (50 words) for class schedule/app listing, 2) Full description (150 words) for website/social media. Both should convey energy, results, and who the class is perfect for. End with "Book your spot today."`,
+      },
+      {
+        id: "wellness-blog-post",
+        name: "Wellness Blog Post",
+        description: "SEO health and fitness articles for your audience",
+        icon: "📚",
+        fields: [
+          { id: "topic", label: "Blog Topic", type: "text", placeholder: "e.g. 5 signs you're overtraining, best foods for muscle recovery", required: true },
+          { id: "targetAudience", label: "Target Reader", type: "select", options: ["General fitness enthusiasts", "Weight loss seekers", "Bodybuilders", "Beginners", "Women 30+", "Busy professionals", "Senior adults"] },
+          { id: "wordCount", label: "Article Length", type: "select", options: ["Short (400-500 words)", "Standard (700-900 words)", "Long-form (1200+ words)"] },
+          { id: "includeKeyword", label: "Target SEO Keyword (optional)", type: "text", placeholder: "e.g. home workout for beginners" },
+        ],
+        promptTemplate: (v) =>
+          `Write a ${v.wordCount || "standard"} fitness/wellness blog post on: "${v.topic}". Target reader: ${v.targetAudience || "general fitness enthusiasts"}${v.includeKeyword ? `. SEO keyword: "${v.includeKeyword}"` : ""}.\n\nInclude: SEO-optimized title, meta description (155 chars), introduction with hook, H2 subheadings for each main point, practical actionable tips, conclusion with key takeaway. Write in a friendly, expert tone — like advice from a trusted trainer, not a textbook.`,
+      },
+      {
+        id: "coaching-script",
+        name: "Coaching Script",
+        description: "Session scripts and motivational talking points",
+        icon: "💬",
+        fields: [
+          { id: "sessionType", label: "Session Type", type: "select", options: ["Initial consultation", "Goal-setting session", "Mid-program check-in", "Plateau breakthrough session", "Final review / graduation", "Nutrition coaching session"] },
+          { id: "clientSituation", label: "Client Situation", type: "textarea", placeholder: "e.g. 35yo female, lost motivation after plateau, been training 3 months, goal is to lose 10kg", required: true },
+          { id: "coachingStyle", label: "Coaching Style", type: "select", options: ["Supportive & empathetic", "Direct & no-nonsense", "Motivational & high-energy", "Educational & analytical"] },
+        ],
+        promptTemplate: (v) =>
+          `Write a coaching session script for a ${v.sessionType || "coaching session"}. Coach style: ${v.coachingStyle || "supportive & empathetic"}.\n\nClient situation: ${v.clientSituation}\n\nCreate a session outline including: opening check-in questions, key discussion points, specific advice to give, motivational talking points, action items to assign, and a closing that leaves the client energized. Include example coach dialogue in quotes.`,
+      },
+      {
+        id: "onboarding-assessment",
+        name: "Onboarding Assessment",
+        description: "New client intake forms and goal-setting questionnaires",
+        icon: "✅",
+        fields: [
+          { id: "businessType", label: "Business Type", type: "select", options: ["Personal trainer (1-on-1)", "Online coaching", "Group fitness studio", "Gym membership", "Nutrition coaching", "Wellness clinic"] },
+          { id: "assessmentGoal", label: "What to Assess", type: "select", options: ["Fitness level & history", "Nutrition habits", "Lifestyle & stress", "Injury & medical history", "Goals & motivation", "Complete full intake"] },
+          { id: "numQuestions", label: "Number of Questions", type: "select", options: ["10 questions", "15 questions", "20 questions", "25 questions"] },
+        ],
+        promptTemplate: (v) =>
+          `Create a ${v.numQuestions || "15-question"} client onboarding assessment for a ${v.businessType || "personal trainer"} focusing on ${v.assessmentGoal || "complete full intake"}.\n\nInclude a mix of: multiple-choice questions, scale questions (1-10), and short-answer prompts. Cover relevant areas thoroughly. Format each question with the question text, type indicator, and answer options where applicable. Add a "Welcome Note" at the top and a "What Happens Next" section at the bottom.`,
+      },
+      {
+        id: "challenge-campaign",
+        name: "Challenge Campaign Copy",
+        description: "30-day challenge and transformation content",
+        icon: "🎉",
+        fields: [
+          { id: "challengeName", label: "Challenge Name", type: "text", placeholder: "e.g. 30-Day Fat Loss Challenge, 21-Day Yoga Flow", required: true },
+          { id: "duration", label: "Duration", type: "select", options: ["7 days", "14 days", "21 days", "30 days"] },
+          { id: "goal", label: "Challenge Goal", type: "text", placeholder: "e.g. lose 5kg, build daily movement habit, complete 30 workouts" },
+          { id: "platform", label: "Where It Runs", type: "select", options: ["Instagram / Facebook group", "WhatsApp group", "Email course", "App-based", "In-person"] },
+        ],
+        promptTemplate: (v) =>
+          `Create full marketing copy for the "${v.challengeName}" — ${v.duration || "30-day"} challenge. Goal: ${v.goal || "transform fitness habits"}. Platform: ${v.platform || "social media group"}.\n\nDeliver: 1) Challenge launch announcement post, 2) Sign-up page copy (headline + description + 5 benefit bullets + CTA), 3) Welcome message for participants, 4) Daily check-in prompt template, 5) Midpoint motivational message (day 10 or 15), 6) Completion congratulations message. Make each piece energetic and community-building.`,
+      },
+    ],
+  },
+
+  // ─── 14. EVENT PLANNING ───────────────────────────────────────────────────
+  {
+    id: "event",
+    name: "Event Planning",
+    tagline: "Plan flawless events and grow your event business with AI",
+    icon: "🎊",
+    color: "purple",
+    gradient: "from-purple-600 to-violet-700",
+    borderColor: "border-purple-400",
+    textColor: "text-purple-700",
+    bgLight: "bg-purple-100",
+    tools: [
+      {
+        id: "run-of-show",
+        name: "Event Run-of-Show",
+        description: "Minute-by-minute event schedules that run smoothly",
+        icon: "📅",
+        fields: [
+          { id: "eventName", label: "Event Name", type: "text", placeholder: "e.g. Smith Wedding Reception, TechCon 2025 Awards", required: true },
+          { id: "eventType", label: "Event Type", type: "select", options: ["Wedding / reception", "Corporate conference", "Award ceremony", "Birthday celebration", "Product launch", "Gala dinner", "Fundraiser"] },
+          { id: "duration", label: "Event Duration", type: "text", placeholder: "e.g. 5pm to 10pm (5 hours)", required: true },
+          { id: "keyMoments", label: "Key Moments to Include", type: "textarea", placeholder: "e.g. cocktail hour, dinner service, speeches, first dance, award presentation, entertainment, photo booth" },
+          { id: "guestCount", label: "Approximate Guest Count", type: "text", placeholder: "e.g. 150 guests" },
+        ],
+        promptTemplate: (v) =>
+          `Create a detailed run-of-show for "${v.eventName}" — ${v.eventType || "event"}, ${v.duration}${v.guestCount ? `, ${v.guestCount} guests` : ""}.\n\nKey moments: ${v.keyMoments || "standard event flow"}\n\nFormat as a minute-by-minute timeline table with columns: Time, Duration, What's Happening, Who's Responsible, Notes/Cues. Include: setup/pre-event prep, guest arrival, main program, and wrap-up/vendor departure. Add a "Key Contacts" placeholder section and a "Contingency Notes" section for common issues.`,
+      },
+      {
+        id: "invitation-copy",
+        name: "Invitation Copy Writer",
+        description: "Save-the-dates and formal invitations for any event",
+        icon: "📝",
+        fields: [
+          { id: "eventType", label: "Event Type", type: "select", options: ["Wedding", "Corporate dinner", "Birthday party", "Baby shower", "Graduation", "Gala / fundraiser", "Product launch", "Holiday party"] },
+          { id: "eventName", label: "Event / Host Name", type: "text", placeholder: "e.g. John & Emma's Wedding, Acme Corp Annual Gala", required: true },
+          { id: "dateTime", label: "Date, Time & Venue", type: "text", placeholder: "e.g. Saturday 14 June 2025, 6pm, The Grand Ballroom", required: true },
+          { id: "tone", label: "Tone", type: "select", options: ["Formal & elegant", "Fun & casual", "Romantic", "Corporate professional", "Whimsical & creative"] },
+          { id: "extras", label: "Extra Details", type: "text", placeholder: "e.g. black tie required, RSVP by May 1, dinner included" },
+        ],
+        promptTemplate: (v) =>
+          `Write invitation copy for a ${v.eventType || "special event"} — "${v.eventName}". Date/Venue: ${v.dateTime}. Tone: ${v.tone || "formal & elegant"}${v.extras ? `. Additional details: ${v.extras}` : ""}.\n\nCreate 3 versions: 1) Short save-the-date text (60 words), 2) Full formal invitation wording (120 words), 3) Casual digital/social invite version (80 words). Each should feel distinct and appropriate for the tone.`,
+      },
+      {
+        id: "vendor-outreach",
+        name: "Vendor Outreach Email",
+        description: "Professional emails to caterers, venues, and suppliers",
+        icon: "📧",
+        fields: [
+          { id: "vendorType", label: "Vendor Type", type: "select", options: ["Venue", "Caterer", "Photographer", "DJ / band", "Florist", "AV / lighting", "Transportation", "Event decorator"] },
+          { id: "eventType", label: "Your Event", type: "text", placeholder: "e.g. 200-person corporate gala in March", required: true },
+          { id: "eventDate", label: "Event Date", type: "text", placeholder: "e.g. March 15, 2026", required: true },
+          { id: "specificNeeds", label: "Specific Requirements", type: "textarea", placeholder: "e.g. 3-course dinner for 150, halal options required, setup by 5pm" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional vendor inquiry email to a ${v.vendorType || "vendor"} for: ${v.eventType}, Date: ${v.eventDate}${v.specificNeeds ? `, Requirements: ${v.specificNeeds}` : ""}.\n\nEmail should: introduce who you are, describe the event clearly, state specific requirements, ask for availability and pricing, request a quote or discovery call. Professional but warm tone. Include subject line. Under 200 words.`,
+      },
+      {
+        id: "event-proposal",
+        name: "Event Proposal",
+        description: "Full event proposals for corporate and private clients",
+        icon: "📄",
+        fields: [
+          { id: "clientName", label: "Client / Company Name", type: "text", placeholder: "e.g. Horizon Tech Ltd", required: true },
+          { id: "eventType", label: "Event Type", type: "text", placeholder: "e.g. Annual Sales Conference, Product Launch", required: true },
+          { id: "budget", label: "Estimated Budget", type: "text", placeholder: "e.g. $25,000", required: true },
+          { id: "attendees", label: "Expected Attendees", type: "text", placeholder: "e.g. 200 corporate guests" },
+          { id: "requirements", label: "Client Requirements", type: "textarea", placeholder: "e.g. keynote speakers, networking sessions, gala dinner, branded merchandise, live streaming" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional event proposal for ${v.clientName}. Event: ${v.eventType}, Budget: ${v.budget}${v.attendees ? `, Attendees: ${v.attendees}` : ""}${v.requirements ? `, Requirements: ${v.requirements}` : ""}.\n\nProposal sections: 1) Executive Summary, 2) Our Understanding of Your Goals, 3) Proposed Event Concept, 4) Event Program Outline, 5) Services We Provide, 6) Investment Summary (placeholder table), 7) Our Experience & Why Choose Us, 8) Next Steps. Professional, confident tone. 600-800 words.`,
+      },
+      {
+        id: "event-social-promo",
+        name: "Event Social Promotion",
+        description: "Countdown posts, stories, and event announcements",
+        icon: "📱",
+        fields: [
+          { id: "eventName", label: "Event Name", type: "text", placeholder: "e.g. The Future of AI Conference 2025", required: true },
+          { id: "eventDate", label: "Event Date & Location", type: "text", placeholder: "e.g. Oct 10, 2025 | Austin, TX", required: true },
+          { id: "platform", label: "Platform", type: "select", options: ["Instagram", "LinkedIn", "Facebook", "Twitter/X"] },
+          { id: "postType", label: "Post Type", type: "select", options: ["Announcement post", "30-day countdown", "1-week reminder", "Day-before hype post", "Post-event highlights wrap"] },
+          { id: "ticketInfo", label: "Ticket / Registration Link Info", type: "text", placeholder: "e.g. Free entry, tickets from $49, register at eventbrite.com" },
+        ],
+        promptTemplate: (v) =>
+          `Write a ${v.platform || "social media"} ${v.postType || "event announcement"} for "${v.eventName}" on ${v.eventDate}${v.ticketInfo ? `. Ticket info: ${v.ticketInfo}` : ""}.\n\nInclude: attention-grabbing hook, event highlights (what makes it unmissable), clear date/location/ticket CTA, 5-8 relevant hashtags. Write 2 variations — one punchy/short, one detailed. Match the energy to the platform.`,
+      },
+      {
+        id: "post-event-thankyou",
+        name: "Post-Event Thank You",
+        description: "Personalized thank-you notes to guests and sponsors",
+        icon: "⭐",
+        fields: [
+          { id: "recipientType", label: "Recipient", type: "select", options: ["Event guests / attendees", "Corporate sponsors", "Speakers / presenters", "Vendors / suppliers", "Volunteers", "VIP guests"] },
+          { id: "eventName", label: "Event Name", type: "text", placeholder: "e.g. Annual Charity Gala 2025", required: true },
+          { id: "highlights", label: "Event Highlights to Mention", type: "textarea", placeholder: "e.g. raised $50k for charity, 300 attendees, incredible performances" },
+          { id: "nextStep", label: "What Happens Next", type: "text", placeholder: "e.g. photos coming next week, save the date for 2026, follow us on social" },
+        ],
+        promptTemplate: (v) =>
+          `Write a heartfelt thank-you message to ${v.recipientType || "event guests"} for "${v.eventName}"${v.highlights ? `. Highlights: ${v.highlights}` : ""}${v.nextStep ? `. Next step: ${v.nextStep}` : ""}.\n\nCreate: 1) Personal email version (150 words), 2) Social media post version (80 words with hashtags), 3) Short text/WhatsApp version (40 words). All warm, genuine, and specific. Don't sound like a template.`,
+      },
+      {
+        id: "sponsorship-pitch",
+        name: "Sponsorship Pitch Deck",
+        description: "Compelling sponsorship packages for event funding",
+        icon: "⭐",
+        fields: [
+          { id: "eventName", label: "Event Name", type: "text", placeholder: "e.g. City Food & Wine Festival 2025", required: true },
+          { id: "eventDetails", label: "Event Overview", type: "textarea", placeholder: "e.g. 3-day outdoor festival, 5000 attendees, Austin TX, June 2025", required: true },
+          { id: "audienceProfile", label: "Audience Profile", type: "text", placeholder: "e.g. 25-45 year olds, affluent, food & lifestyle enthusiasts" },
+          { id: "sponsorshipLevels", label: "Sponsorship Tiers", type: "select", options: ["3 tiers (Gold/Silver/Bronze)", "4 tiers (Platinum/Gold/Silver/Bronze)", "2 tiers (Premier/Supporting)", "Custom packages only"] },
+        ],
+        promptTemplate: (v) =>
+          `Write sponsorship pitch deck content for "${v.eventName}". Event: ${v.eventDetails}. Audience: ${v.audienceProfile || "diverse attendees"}. Tiers: ${v.sponsorshipLevels || "3 tiers"}.\n\nCreate: 1) Executive pitch paragraph (why sponsor this event), 2) Audience & reach highlights, 3) ${v.sponsorshipLevels} with benefits listed for each (logo placement, mentions, tickets, activations etc.), 4) "Why Partner With Us" section, 5) Call-to-action / contact paragraph. Professional, benefit-focused, and persuasive.`,
+      },
+      {
+        id: "event-checklist",
+        name: "Event Day Checklist",
+        description: "Nothing-left-behind checklists for the big day",
+        icon: "✅",
+        fields: [
+          { id: "eventType", label: "Event Type", type: "select", options: ["Wedding", "Corporate conference", "Birthday party", "Gala dinner", "Product launch", "Outdoor festival", "Virtual event"] },
+          { id: "eventScale", label: "Event Scale", type: "select", options: ["Intimate (under 50 guests)", "Medium (50-200 guests)", "Large (200-500 guests)", "Major (500+ guests)"] },
+          { id: "venue", label: "Venue Type", type: "select", options: ["Hotel / ballroom", "Outdoor / marquee", "Conference center", "Restaurant", "Private estate", "Virtual / online"] },
+          { id: "specificConcerns", label: "Specific Concerns or Focus Areas", type: "text", placeholder: "e.g. AV setup, catering timing, guest parking, VIP reception" },
+        ],
+        promptTemplate: (v) =>
+          `Create a comprehensive event day checklist for a ${v.eventScale || "medium"} ${v.eventType || "event"} at a ${v.venue || "venue"}${v.specificConcerns ? `. Focus areas: ${v.specificConcerns}` : ""}.\n\nOrganize into time-phased sections: T-7 days, T-1 day, Day-of morning, 2 hours before, 30 minutes before, During event, After event / wrap-up. Each item should be specific and actionable. Include a "Who's Responsible" column. Add a "Emergency Contacts" template section and a "Common Day-Of Disasters & Solutions" quick-reference box.`,
+      },
+      {
+        id: "emcee-script",
+        name: "Emcee Script Writer",
+        description: "Engaging hosting scripts and audience warm-ups",
+        icon: "💬",
+        fields: [
+          { id: "eventName", label: "Event Name", type: "text", placeholder: "e.g. TechVision Awards Night 2025", required: true },
+          { id: "eventType", label: "Event Type", type: "select", options: ["Award ceremony", "Corporate conference", "Gala dinner", "Wedding reception", "Product launch", "Charity fundraiser"] },
+          { id: "segment", label: "Which Segment to Script", type: "select", options: ["Full show opening", "Welcome & housekeeping", "Award presentation segments", "Speaker introduction", "Dinner transition", "Closing & thank you"] },
+          { id: "tone", label: "Tone", type: "select", options: ["Professional & polished", "Warm & celebratory", "Fun & energetic", "Inspirational", "Formal & prestigious"] },
+          { id: "duration", label: "Segment Duration", type: "select", options: ["2-3 minutes", "5 minutes", "10 minutes", "15+ minutes"] },
+        ],
+        promptTemplate: (v) =>
+          `Write an emcee script for the "${v.segment || "event opening"}" of "${v.eventName}" — a ${v.eventType || "corporate event"}. Tone: ${v.tone || "professional & warm"}. Duration: ${v.duration || "5 minutes"}.\n\nInclude: [EMCEE NOTE] stage directions in brackets, complete spoken word in full, natural audience engagement moments, smooth transitions. The script should sound natural when read aloud — not like it was written. End with a clear cue for what happens next.`,
+      },
+    ],
+  },
+
+  // ─── 15. CONSTRUCTION ─────────────────────────────────────────────────────
+  {
+    id: "construction",
+    name: "Construction",
+    tagline: "Win more bids and manage projects smarter with AI",
+    icon: "🏗️",
+    color: "amber",
+    gradient: "from-amber-500 to-orange-600",
+    borderColor: "border-amber-400",
+    textColor: "text-amber-700",
+    bgLight: "bg-amber-100",
+    tools: [
+      {
+        id: "bid-proposal",
+        name: "Bid Proposal Writer",
+        description: "Professional bids that win more contracts",
+        icon: "📄",
+        fields: [
+          { id: "projectType", label: "Project Type", type: "select", options: ["Residential renovation", "New home build", "Commercial fit-out", "Road / civil works", "Roofing", "Plumbing / electrical", "Landscaping", "Industrial"] },
+          { id: "clientName", label: "Client Name / Company", type: "text", placeholder: "e.g. The Johnson Family / Apex Holdings", required: true },
+          { id: "projectDescription", label: "Project Scope", type: "textarea", placeholder: "e.g. Full kitchen renovation: demo, new cabinetry, countertops, plumbing, electrical, flooring, painting", required: true },
+          { id: "estimatedValue", label: "Estimated Project Value", type: "text", placeholder: "e.g. $45,000" },
+          { id: "timeline", label: "Estimated Timeline", type: "text", placeholder: "e.g. 6-8 weeks, starting March 2026" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional construction bid proposal for ${v.clientName}. Project: ${v.projectType || "construction project"} — ${v.projectDescription}${v.estimatedValue ? `. Value: ${v.estimatedValue}` : ""}${v.timeline ? `. Timeline: ${v.timeline}` : ""}.\n\nInclude: 1) Cover page summary, 2) Our Understanding of the Project, 3) Scope of Work (detailed bullet list), 4) What's Excluded, 5) Project Timeline with phases, 6) Investment Summary (placeholder table), 7) Payment Terms, 8) Our Qualifications & Guarantees, 9) Next Steps / Acceptance. Professional, confident tone. Thorough and trust-building.`,
+      },
+      {
+        id: "safety-plan",
+        name: "Safety Plan Generator",
+        description: "OSHA-compliant site safety plans for any project",
+        icon: "⚡",
+        fields: [
+          { id: "projectType", label: "Project Type", type: "select", options: ["Residential construction", "Commercial construction", "Demolition", "Excavation / earthworks", "Roofing", "Electrical work", "Plumbing", "Road construction"] },
+          { id: "projectAddress", label: "Project Address / Site", type: "text", placeholder: "e.g. 45 Commerce Drive, Dallas TX", required: true },
+          { id: "hazards", label: "Key Hazards on This Site", type: "textarea", placeholder: "e.g. working at height, heavy machinery, confined spaces, electrical hazards, asbestos risk" },
+          { id: "teamSize", label: "Team / Crew Size", type: "select", options: ["1-5 workers", "6-15 workers", "16-30 workers", "31-50 workers", "50+ workers"] },
+        ],
+        promptTemplate: (v) =>
+          `Create an OSHA-aligned site safety plan for a ${v.projectType || "construction project"} at ${v.projectAddress}. Team size: ${v.teamSize || "6-15 workers"}${v.hazards ? `. Key hazards: ${v.hazards}` : ""}.\n\nInclude: 1) Project Safety Overview, 2) Hazard Identification & Risk Assessment table, 3) Required PPE by task, 4) Emergency Procedures (contacts, evacuation, first aid), 5) Tool & Equipment Safety rules, 6) Daily Safety Briefing template, 7) Incident Reporting procedure, 8) Safety inspection checklist. Practical and OSHA-referenced.`,
+      },
+      {
+        id: "progress-report",
+        name: "Project Progress Report",
+        description: "Client-ready weekly progress updates",
+        icon: "📊",
+        fields: [
+          { id: "projectName", label: "Project Name", type: "text", placeholder: "e.g. Johnson Kitchen Renovation", required: true },
+          { id: "reportPeriod", label: "Report Period", type: "text", placeholder: "e.g. Week 3 (Jan 20-24, 2026)", required: true },
+          { id: "completed", label: "Work Completed This Period", type: "textarea", placeholder: "e.g. Demo completed, rough plumbing installed, drywall 80% done", required: true },
+          { id: "nextWeek", label: "Planned Work Next Period", type: "textarea", placeholder: "e.g. Electrical rough-in, insulation, drywall completion, tile delivery" },
+          { id: "issues", label: "Issues / Delays (if any)", type: "textarea", placeholder: "e.g. Tile delivery delayed 3 days, awaiting permit for structural beam" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional client-facing progress report for "${v.projectName}", ${v.reportPeriod}.\n\nCompleted: ${v.completed}\nPlanned next: ${v.nextWeek || "continuing as scheduled"}\nIssues: ${v.issues || "none — project on track"}\n\nFormat: 1) Progress Summary paragraph (upbeat, reassuring), 2) Work Completed (bulleted), 3) Work Planned (bulleted), 4) Issues & Resolution (if any — solution-focused), 5) Current Project Status (% complete estimate), 6) Projected Completion. Client-friendly language, not too technical.`,
+      },
+      {
+        id: "subcontractor-email",
+        name: "Subcontractor Email",
+        description: "Clear scope-of-work emails to subs and suppliers",
+        icon: "📧",
+        fields: [
+          { id: "subType", label: "Subcontractor / Supplier Type", type: "select", options: ["Electrician", "Plumber", "HVAC technician", "Tile / flooring installer", "Painter", "Roofer", "Concrete subcontractor", "Material supplier"] },
+          { id: "projectName", label: "Project", type: "text", placeholder: "e.g. 12 Elm Street residential build", required: true },
+          { id: "scope", label: "Scope of Work", type: "textarea", placeholder: "e.g. Install rough-in plumbing for 2 bathrooms and kitchen, including supply lines and drain rough-in", required: true },
+          { id: "startDate", label: "Required Start Date", type: "text", placeholder: "e.g. Feb 3, 2026" },
+          { id: "deadline", label: "Completion Deadline", type: "text", placeholder: "e.g. Feb 14, 2026" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional email to a ${v.subType || "subcontractor"} for project: ${v.projectName}. Scope: ${v.scope}${v.startDate ? `. Start: ${v.startDate}` : ""}${v.deadline ? `, Deadline: ${v.deadline}` : ""}.\n\nEmail should: state the project and scope clearly, confirm required dates, outline coordination requirements (site access, materials they need to supply vs. GC provides), request confirmation of availability and pricing, note any key site rules. Direct, professional, friendly. Include subject line.`,
+      },
+      {
+        id: "change-order",
+        name: "Change Order Letter",
+        description: "Formal change order documentation in minutes",
+        icon: "📄",
+        fields: [
+          { id: "projectName", label: "Project Name", type: "text", placeholder: "e.g. Oak Street Commercial Fit-Out", required: true },
+          { id: "clientName", label: "Client Name", type: "text", placeholder: "e.g. Apex Holdings LLC", required: true },
+          { id: "changeDescription", label: "Description of Change", type: "textarea", placeholder: "e.g. Client requested addition of 2 extra power outlets in conference room and upgrade to premium light fittings throughout", required: true },
+          { id: "additionalCost", label: "Additional Cost", type: "text", placeholder: "e.g. $2,850", required: true },
+          { id: "timeImpact", label: "Schedule Impact", type: "text", placeholder: "e.g. Adds 2 days to completion, new deadline Feb 28" },
+        ],
+        promptTemplate: (v) =>
+          `Write a formal change order letter for project: ${v.projectName}, Client: ${v.clientName}.\n\nChange: ${v.changeDescription}\nAdditional Cost: ${v.additionalCost}${v.timeImpact ? `\nSchedule Impact: ${v.timeImpact}` : ""}\n\nInclude: Change Order number placeholder, date, project reference, description of original scope vs. requested change, itemized cost breakdown (labor/materials/markup), schedule impact, approval signature block, and payment terms for the additional work. Professional and legally clear.`,
+      },
+      {
+        id: "pre-construction-checklist",
+        name: "Pre-Construction Checklist",
+        description: "Permit, site prep and kickoff checklists",
+        icon: "✅",
+        fields: [
+          { id: "projectType", label: "Project Type", type: "select", options: ["Residential new build", "Home renovation / addition", "Commercial build-out", "Demolition", "Infrastructure / civil", "Landscaping / hardscaping"] },
+          { id: "projectScope", label: "Brief Project Description", type: "text", placeholder: "e.g. 2-story home addition, 800 sq ft, kitchen & 2 bedrooms", required: true },
+          { id: "jurisdiction", label: "Location / Jurisdiction", type: "text", placeholder: "e.g. Austin, Texas" },
+          { id: "startDate", label: "Planned Start Date", type: "text", placeholder: "e.g. March 10, 2026" },
+        ],
+        promptTemplate: (v) =>
+          `Create a comprehensive pre-construction checklist for a ${v.projectType || "construction project"}: ${v.projectScope}${v.jurisdiction ? ` in ${v.jurisdiction}` : ""}${v.startDate ? `. Planned start: ${v.startDate}` : ""}.\n\nOrganize into phases: 1) Permits & Approvals (4-8 weeks before), 2) Design & Engineering sign-offs, 3) Subcontractor & supplier confirmations, 4) Site preparation, 5) Materials procurement & delivery scheduling, 6) Equipment & tool readiness, 7) Safety setup, 8) Client communication & kickoff meeting. Each item: specific, actionable, with "Owner" column for accountability.`,
+      },
+      {
+        id: "closeout-report",
+        name: "Project Closeout Report",
+        description: "Final project summaries and punch list follow-ups",
+        icon: "⭐",
+        fields: [
+          { id: "projectName", label: "Project Name", type: "text", placeholder: "e.g. Riverside Condo Renovation", required: true },
+          { id: "clientName", label: "Client Name", type: "text", placeholder: "e.g. The Martinez Family", required: true },
+          { id: "originalTimeline", label: "Original vs Actual Timeline", type: "text", placeholder: "e.g. 8 weeks planned, completed in 9 weeks" },
+          { id: "highlights", label: "Project Highlights", type: "textarea", placeholder: "e.g. zero safety incidents, under budget by $2k, client added kitchen upgrade mid-project" },
+          { id: "punchItems", label: "Outstanding Punch List Items (if any)", type: "textarea", placeholder: "e.g. touch-up paint in hallway, replace cracked tile in bathroom" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional project closeout report for "${v.projectName}", Client: ${v.clientName}. Timeline: ${v.originalTimeline || "completed as scheduled"}${v.highlights ? `. Highlights: ${v.highlights}` : ""}${v.punchItems ? `\nPunch items: ${v.punchItems}` : ""}.\n\nSections: 1) Project Summary (scope, dates, outcome), 2) Key Achievements, 3) Final Budget Summary (placeholder), 4) Outstanding Punch List with resolution dates, 5) Warranty Information & Contacts, 6) Client Sign-Off section, 7) Thank You & Referral Request. Professional, proud, and closing-strong tone.`,
+      },
+      {
+        id: "cost-estimate",
+        name: "Cost Estimate Summary",
+        description: "Client-facing cost breakdowns and budget summaries",
+        icon: "📊",
+        fields: [
+          { id: "projectType", label: "Project Type", type: "text", placeholder: "e.g. Master bathroom renovation", required: true },
+          { id: "scope", label: "Full Scope of Work", type: "textarea", placeholder: "e.g. Demo existing bathroom, install new shower enclosure, freestanding tub, dual vanity, heated floors, recessed lighting, tile throughout", required: true },
+          { id: "totalEstimate", label: "Total Estimate", type: "text", placeholder: "e.g. $28,500" },
+          { id: "format", label: "Format Style", type: "select", options: ["Simple summary for homeowner", "Detailed line-item breakdown", "Comparison of 3 options (economy/standard/premium)", "Phase-based breakdown"] },
+        ],
+        promptTemplate: (v) =>
+          `Create a client-facing cost estimate for a ${v.projectType}. Scope: ${v.scope}${v.totalEstimate ? `. Total estimate: ${v.totalEstimate}` : ""}. Format: ${v.format || "detailed line-item breakdown"}.\n\nFor each line item include: description, unit/quantity, unit cost (placeholder), and total. Group by category (labor, materials, subcontractors, permits, contingency). Add: how estimates were calculated, what could affect the final price, payment schedule recommendation, and a "What's Not Included" section for clarity.`,
+      },
+      {
+        id: "warranty-letter",
+        name: "Warranty Letter Generator",
+        description: "Professional warranty documentation for finished work",
+        icon: "📚",
+        fields: [
+          { id: "companyName", label: "Your Company Name", type: "text", placeholder: "e.g. Titan Construction LLC", required: true },
+          { id: "clientName", label: "Client Name", type: "text", placeholder: "e.g. Robert & Anne Walsh", required: true },
+          { id: "projectAddress", label: "Project Address", type: "text", placeholder: "e.g. 78 Pine Street, Denver CO 80201", required: true },
+          { id: "workCompleted", label: "Work Completed", type: "textarea", placeholder: "e.g. Full roof replacement including decking, underlayment, architectural shingles, gutters and flashing" },
+          { id: "warrantyTerms", label: "Warranty Terms", type: "textarea", placeholder: "e.g. 5-year workmanship warranty, manufacturer 30-year shingle warranty, 1-year gutter warranty" },
+        ],
+        promptTemplate: (v) =>
+          `Write a professional warranty letter from ${v.companyName} to ${v.clientName} for work at ${v.projectAddress}.\n\nWork completed: ${v.workCompleted || "construction project"}\nWarranty terms: ${v.warrantyTerms || "standard workmanship warranty"}\n\nInclude: company letterhead placeholder, completion date placeholder, detailed warranty coverage, specific exclusions (weather events, owner modifications, neglect), claim procedure, contact information placeholder, and signature block. Legal-sounding but plain English. Professional and confidence-building.`,
+      },
+    ],
+  },
 ];
