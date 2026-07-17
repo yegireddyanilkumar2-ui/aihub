@@ -52,11 +52,32 @@ body {
 
 /* ── Gradient text (dark enough to read on light bg) ── */
 .gradient-text {
-  background: linear-gradient(135deg, #5b21b6 0%, #1d4ed8 50%, #0369a1 100%);
+  background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 60%, #0369a1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Filter tabs ── */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.ftab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.ftab:hover { border-color: #0284c7; color: #0284c7; }
+.ftab.active { background: #0284c7; color: #fff; border-color: #0284c7; }
 
 .gradient-text-warm {
   background: linear-gradient(135deg, #b45309 0%, #b91c1c 50%, #be185d 100%);
